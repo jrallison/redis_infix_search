@@ -1,24 +1,29 @@
-# Infix
+# Infix search with redis
 
-TODO: Write a gem description
+A simple, and real-time infix search with redis.
+
+    conn.index(1, "john@customer.io")
+    conn.index(2, "jrallison@gmail.com")
+    conn.index(3, "colin@customer.io")
+    conn.index(3, "someone@custom.com")
+
+    conn.search("custom") == [
+      { id: 3, value: "colin@customer.io" },
+      { id: 1, value: "john@customer.io" },
+      { id: 4, value: "someone@custom.com" }
+    ]
+
+Results are ordered in the following order:
+
+1. Exact matches
+2. Prefix matches
+3. Lexicographical order
+
+**Note:** currently **very** memory intensive. experimental. :)
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'infix'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install infix
-
-## Usage
-
-TODO: Write usage instructions here
+`TODO`
 
 ## Contributing
 
